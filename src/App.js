@@ -18,7 +18,8 @@ function App() {
 
     try {
       //const response = await api.get(`${input}/json`)
-      const response = await api.get(`${input}.json`)
+      //const response = await api.get(`${input}.json`)
+      const response = await api.get(`json/${input}`)
       setCep(response.data)
       setInput("")
     } catch {
@@ -29,7 +30,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className='title'>Buscador Cep</h1>
+      <h1 className='title'>Buscador de Cep</h1>
       <div className='containerInput'>
         <input type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder='Digite seu cep...'/>
         <button className="buttonSearch" onClick={handleSearch}>
@@ -40,9 +41,10 @@ function App() {
       {Object.keys(cep).length > 0 && (
          <main className='main'>
          <h2>CEP: {cep.code}</h2>
-         <span>{cep.address}</span>
-         <span>{cep.district}</span>
-         <span>{cep.city}, {cep.state}</span>
+         <span>{cep.address}</span> 
+         <span>Bairro: {cep.district}</span>
+         <span>Cidade: {cep.city}, {cep.state}</span>
+         <span>DDD: {cep.ddd}</span>
        </main>
       )}     
     </div>
@@ -50,3 +52,4 @@ function App() {
 }
 
 export default App;
+//{cep.address_type},
